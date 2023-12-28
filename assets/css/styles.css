@@ -1,0 +1,253 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Gwendolyn:wght@700&family=Montserrat:wght@400;700&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(72, 59%, 45%);
+  --first-color-alt: hsl(72, 75%, 38%);
+  --gradient-color: linear-gradient(180deg,
+                  hsl(151, 61%, 21%),
+                  hsl(151, 80%, 28%));
+  --first-color-dark: hsl(151, 52%, 17%);
+  --first-color-darker: hsl(151, 52%, 12%);
+  --title-color: hsl(49, 96%, 91%);
+  --text-color: hsl(99, 20%, 65%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", sans-serif;
+  --second-font: "Gwendolyn", cursive;
+  --biggest-font-size: 2rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: .938rem;
+  --smaller-font-size: .75rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-bold: 700;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1550px) {
+  :root {
+    --biggest-font-size: 3rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background: var(--gradient-color) no-repeat;
+  color: var(--text-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+.main {
+  overflow: hidden;
+}
+
+/*=============== HEADER & NAV ===============*/
+.header{
+ position: fixed;
+ width: 100%;
+ top: 0;
+ left: 0;
+ background-color: var(--first-color-dark);
+ z-index: var(--z-fixed);
+}
+.nav, .nav__logo, .nav__list, .nav__buttons{
+  display: flex;
+  
+} 
+.nav{
+  position: relative;
+  height: var(--header-height);
+  justify-content: space-between;
+  align-items: center;
+}
+.nav__logo{
+  color: var(--title-color);
+  font-weight: var(--font-bold);
+  flex-direction: column;
+  align-items: center;
+}
+.nav__logo span:nth-child(1){
+color: var(--first-color);
+font-size: var(--h1-font-size);
+font-family: var(--second-font);
+transform: translateY(4px);
+}
+.nav__logo span:nth-child(2){
+transform: translateY(-4px);
+}
+.nav__toggle, .nav__close{
+    display: inline-flex;
+    font-size: 1.25rem;
+    color: var(--title-color);
+    cursor: pointer;
+}
+/* Navigation for mobile devices */
+@media screen and (max-width: 1150px){
+  .nav__menu{
+    position: fixed;
+    top: 0;
+    right: -100%;
+    background: var(--gradient-color);
+    width: 80%;
+    height: 100%;
+    box-shadow: -2px 0 12px hsla(0, 0%, 0%, .2);
+    padding: 6rem 2rem 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5rem;
+    transition: right .4s;
+  }
+
+  .nav__list{
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+  .nav__link{
+    color: var(--text-color);
+    font-weight: var(--font-bold);
+    display: inline-flex;
+    flex-direction: column;
+    transition: color .4s;
+
+  }
+  .nav__link span{
+    font-size: var(--smaller-font-size);
+  }
+  .nav__link:hover{
+    color: var(--title-color);
+  }
+  .nav__buttons{
+    align-items: center;
+    column-gap: 1rem;
+  }
+  .nav__notification{
+    position: relative;
+    background-color: var(--first-color);
+    height: 50px;
+    width: 50px;
+    border-radius: .75rem;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background-color .4s;
+  }
+  .nav__bell{
+    width: 32px;
+  }
+  .nav__notification:hover{
+    background-color: var(--first-color-alt);
+  }
+  .nav__circle{
+    width: 24px;
+    height: 24px;
+    background-color: hsl(0, 100%, 39%);
+    color: var(--title-color);
+    font-weight: var(--font-bold);
+    font-size: var(--smaller-font-size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+  }
+  .nav__close{
+    position: absolute;
+    top: 1.15rem;
+    right: 1.5rem;
+  }
+}
+
+/* Active link */
+.active-link{
+  color: var(--title-color);
+
+}
+.active-link span{
+  color: var(--first-color);
+}
+
+/* Show menu */
+.show-menu{
+  right: 0 !important;
+}
+
+/*=============== BUTTON ===============*/
+.button {
+  display: inline-block;
+  background-color: var(--first-color);
+  color: #fff;
+  font-weight: var(--font-bold);
+  padding: 1.125rem 2rem;
+  border-radius: .75rem;
+  box-shadow: 0 4px 24px hsla(0, 0%, 0%, .2);
+  transition: background-color .4s;
+}
+.button:hover{
+  background-color: var(--first-color-alt);
+}
+.button__dark{
+  background-color: var(--first-color-dark);
+}
+.button__dark:hover{
+  background-color: var(--first-color-darker);
+}
+/*=============== HOME ===============*/
+
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+
+
+/* For medium devices */
+
+
+/* For lower devices */
+
+
+/* For large devices */
